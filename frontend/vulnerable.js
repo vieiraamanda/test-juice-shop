@@ -39,6 +39,10 @@ app.post('/login', (req, res) => {
   });
 });
 
+// 3. Information Exposure through Comments (Low Severity)
+// TODO: Remove this comment before production
+// API_KEY=12345-this-is-a-fake-key
+
 // Start the server
 app.listen(port, () => {
   console.log(`Vulnerable app listening at http://localhost:${port}`);
