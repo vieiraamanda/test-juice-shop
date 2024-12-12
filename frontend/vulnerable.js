@@ -1,3 +1,5 @@
+// Vulnerable JavaScript file for testing SAST tools
+
 // 1. XSS Vulnerability
 const express = require('express');
 const app = express();
@@ -42,6 +44,22 @@ app.post('/login', (req, res) => {
 // 3. Information Exposure through Comments (Low Severity)
 // TODO: Remove this comment before production
 // API_KEY=12345-this-is-a-fake-key
+
+// 4. Insecure Direct Object Reference (IDOR - Medium Severity)
+app.get('/user/:id', (req, res) => {
+  const userId = req.params.id; // No authorization check
+
+  // Exposing user data without verifying the requester
+  db.get(`SELECT * FROM users WHERE id = ${userId}`, (err, row) => {
+    if (err) {
+      res.status(500).send('Database error');
+    } else if (row) {
+      res.json(row);
+    } else {
+      res.status(404).send('User not found');
+    }
+  });
+});
 
 // Start the server
 app.listen(port, () => {
