@@ -35,23 +35,6 @@ app.get('/error', (req, res) => {
 // TODO: Remove this comment before going to production
 // This is a placeholder for a potential security review process
 
-// 5. Deprecated HTTP Method Usage (Low Severity)
-app.get('/deprecated', (req, res) => {
-  res.send('This endpoint uses a standard GET method but lacks proper implementation checks');
-});
-
-// 6. Static File Path Exposure in Logs (Low Severity)
-const staticPath = '/static/files';
-console.log(`Static files are served from: ${staticPath}`); // Logging path for static files
-
-// 7. Default Server Response Headers (Low Severity)
-app.get('/default-headers', (req, res) => {
-  res.send('Default server response headers are being sent');
-});
-
-// 8. Comments with Sensitive Placeholder (Low Severity)
-// Placeholder: API_SECRET_PLACEHOLDER -- to be replaced in production
-
 app.listen(port, () => {
-  console.log(`Low vulnerability test app listening at http://localhost:${port}`);
+  console.log(`Low vulnerability app listening at http://localhost:${port}`);
 });
